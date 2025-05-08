@@ -1,10 +1,10 @@
 package br.com.fiap.checkpoint2.service;
 
-import br.com.fiap.checkpoint2.dto.PacienteRequestUpdate;
 import br.com.fiap.checkpoint2.dto.ProfissionalRequestCreate;
 import br.com.fiap.checkpoint2.dto.ProfissionalRequestUpdate;
-import br.com.fiap.checkpoint2.model.Paciente;
 import br.com.fiap.checkpoint2.model.Profissional;
+import br.com.fiap.checkpoint2.repository.ProfissionalRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,39 +14,32 @@ import java.util.Optional;
 @Service
 public class ProfissionalService {
 
-    private Long sequence = 1L;
+    @Autowired
+    private ProfissionalRepository repository;
     private List<Profissional> profissionais = new ArrayList<>();
     public Profissional create(ProfissionalRequestCreate dto){
-        Profissional profissional = new Profissional();
-        profissional.setId(sequence++);
-        profissional.setNome(dto.getNome());
-        profissional.setEspecialidade(dto.getEspecialidade());
-        profissional.setValorHora(dto.getValorHora());
-        profissional.setCreatedAt(dto.getCreatedAt());
-        profissional.setUpdatedAt(dto.getUpdatedAt());
-        profissionais.add(profissional);
-        return profissional;
+        return repository.save(dto.toModel());
     }
 
     public Optional<Profissional> updateProfissional(Long id, ProfissionalRequestUpdate dto){
-        return profissionais.stream().filter(profissional -> profissional.getId().equals(id)).findFirst()
-                .map(p -> {
-                    p.setValorHora(dto.getValorHora());
-                    p.setEspecialidade(dto.getEspecialidade());
-                    return p;
-                });
+        return repository.findById(id)
+                .map(p -> repository.save(dto.toModel(p)));
     }
 
     public Optional<Profissional> getById(Long id) {
-        return profissionais.stream().filter(profissional -> profissional.getId().equals(id)).findFirst();
+        return repository.findById(id);
 
     }
 
     public List<Profissional> getAll() {
-        return profissionais;
+        return repository.findAll();
     }
 
     public boolean delete(Long id){
-        return profissionais.removeIf(profissional -> profissional.getId().equals(id));
+        if (repository.existsById(id)){
+            repository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 }

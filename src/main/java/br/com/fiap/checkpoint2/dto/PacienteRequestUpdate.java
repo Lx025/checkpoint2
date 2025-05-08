@@ -1,5 +1,7 @@
 package br.com.fiap.checkpoint2.dto;
 
+import br.com.fiap.checkpoint2.model.Paciente;
+
 public class PacienteRequestUpdate {
 
     private String endereco;
@@ -7,6 +9,13 @@ public class PacienteRequestUpdate {
     private String email;
     private String telefone;
 
+    public Paciente toModel(Paciente paciente){
+        paciente.setEndereco(this.endereco);
+        paciente.setBairro(this.bairro);
+        paciente.setEmail(this.email);
+        paciente.setTelefone(this.telefone);
+        return paciente;
+    }
     public String getEndereco() {
         return endereco;
     }

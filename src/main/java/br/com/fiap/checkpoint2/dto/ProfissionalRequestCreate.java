@@ -1,5 +1,8 @@
 package br.com.fiap.checkpoint2.dto;
 
+import br.com.fiap.checkpoint2.model.Paciente;
+import br.com.fiap.checkpoint2.model.Profissional;
+
 import java.time.LocalDateTime;
 
 public class ProfissionalRequestCreate {
@@ -10,6 +13,15 @@ public class ProfissionalRequestCreate {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
+    public Profissional toModel(){
+        Profissional profissional = new Profissional();
+        profissional.setNome(this.nome);
+        profissional.setEspecialidade(this.especialidade);
+        profissional.setValorHora(this.valorHora);
+        profissional.setCreatedAt(this.createdAt);
+        profissional.setUpdatedAt(this.updatedAt);
+        return profissional;
+    }
     public String getNome() {
         return nome;
     }

@@ -1,5 +1,7 @@
 package br.com.fiap.checkpoint2.dto;
 
+import br.com.fiap.checkpoint2.model.Paciente;
+
 public class PacienteRequestCreate {
 
     private String nome;
@@ -8,6 +10,15 @@ public class PacienteRequestCreate {
     private String email;
     private String telefone;
 
+    public Paciente toModel(){
+        Paciente paciente = new Paciente();
+        paciente.setNome(this.nome);
+        paciente.setEndereco(this.endereco);
+        paciente.setBairro(this.bairro);
+        paciente.setEmail(this.email);
+        paciente.setTelefone(this.telefone);
+        return paciente;
+    }
     public String getNome() {
         return nome;
     }
