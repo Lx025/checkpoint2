@@ -18,8 +18,6 @@ public class PacienteService {
     @Autowired
     private PacienteRepository repository;
 
-    private Long sequence = 1L;
-    private List<Paciente> pacientes = new ArrayList<>();
     public Paciente create(PacienteRequestCreate dto){
         return repository.save(dto.toModel());
     }

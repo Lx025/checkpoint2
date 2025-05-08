@@ -16,7 +16,7 @@ public class ProfissionalService {
 
     @Autowired
     private ProfissionalRepository repository;
-    private List<Profissional> profissionais = new ArrayList<>();
+
     public Profissional create(ProfissionalRequestCreate dto){
         return repository.save(dto.toModel());
     }
