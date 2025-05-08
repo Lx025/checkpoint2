@@ -1,5 +1,4 @@
 package br.com.fiap.checkpoint2.controller;
-
 import br.com.fiap.checkpoint2.dto.*;
 import br.com.fiap.checkpoint2.service.ProfissionalService;
 import org.springframework.beans.factory.annotation.Autowired;
