@@ -1,9 +1,7 @@
 package br.com.fiap.checkpoint2.service;
 
-import br.com.fiap.checkpoint2.dto.PacienteRequestUpdate;
 import br.com.fiap.checkpoint2.dto.ProfissionalRequestCreate;
 import br.com.fiap.checkpoint2.dto.ProfissionalRequestUpdate;
-import br.com.fiap.checkpoint2.model.Paciente;
 import br.com.fiap.checkpoint2.model.Profissional;
 import org.springframework.stereotype.Service;
 

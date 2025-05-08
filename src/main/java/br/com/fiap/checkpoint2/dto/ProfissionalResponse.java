@@ -1,6 +1,5 @@
 package br.com.fiap.checkpoint2.dto;
 
-import br.com.fiap.checkpoint2.model.Paciente;
 import br.com.fiap.checkpoint2.model.Profissional;
 
 import java.time.LocalDateTime;
